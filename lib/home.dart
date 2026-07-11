@@ -1,3 +1,4 @@
+import 'package:card_game/item_card_model.dart';
 import 'package:flutter/material.dart';
 
 class GridPage extends StatefulWidget {
@@ -8,8 +9,7 @@ class GridPage extends StatefulWidget {
 }
 
 class GridPageState extends State<GridPage> {
-  List<String> image = [
-    'assets/images/css.jpg',
+  List<String> images = [
     'assets/images/bootstrap.jpg',
     'assets/images/dart.jpg',
     'assets/images/figmaa.jpg',
@@ -24,6 +24,14 @@ class GridPageState extends State<GridPage> {
     'assets/images/react.jpg',
     'assets/images/vscode.jpg',
     'assets/images/windows.jpg',
+  ];
+  List<ItemCardModel> cards = [
+    ItemCardModel(
+      id: 1,
+      image: 'assets/images/css.jpg',
+      isMatched: false,
+      isflipped: false,
+    ),
   ];
   @override
   Widget build(BuildContext context) {
