@@ -32,7 +32,91 @@ class GridPageState extends State<GridPage> {
       isMatched: false,
       isflipped: false,
     ),
-  ];
+     ItemCardModel(
+    id:21,
+    image: 'assets/images/bootstrap.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 3,
+    image: 'assets/images/dart.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 4,
+    image: 'assets/images/figmaa.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 5,
+    image: 'assets/images/flutter.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 6,
+    image: 'assets/images/github.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 7,
+    image: 'assets/images/html.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 8,
+    image: 'assets/images/js.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 9,
+    image: 'assets/images/kali.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 10,
+    image: 'assets/images/linux.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 11,
+    image: 'assets/images/meta.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 12,
+    image: 'assets/images/python.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 13,
+    image: 'assets/images/react.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 14,
+    image: 'assets/images/vscode.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+  ItemCardModel(
+    id: 15,
+    image: 'assets/images/windows.jpg',
+    isMatched: false,
+    isflipped: false,
+  ),
+];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +142,7 @@ class GridPageState extends State<GridPage> {
                         color: Colors.pink,
                       ),
                       child: Image.asset(
-                        image[index],
+                        images[index],
                         width: double.infinity,
                         height: double.infinity,
                       ),
