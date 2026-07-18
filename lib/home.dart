@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:card_game/item_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:card_game/gradient_background.dart';
@@ -12,6 +13,8 @@ class GridPage extends StatefulWidget {
 }
 
 class GridPageState extends State<GridPage> {
+  AudioPlayer player = AudioPlayer();
+
   List<String> images = [
     'assets/images/bootstrap.jpg',
     'assets/images/dart.jpg',
@@ -249,6 +252,7 @@ class GridPageState extends State<GridPage> {
 
     if (cards[index].isflipped) return;
 
+    await player.play(AssetSource('audios/card_flip.mp3'));
     setState(() {
       cards[index].isflipped = true;
     });
@@ -305,28 +309,29 @@ class GridPageState extends State<GridPage> {
       );
     }
   }
+
   void restartGame() {
-  setState(() {
-    score = 0;
-    moves = 0;
-    seconds = 0;
-    timer = "00:00";
+    setState(() {
+      score = 0;
+      moves = 0;
+      seconds = 0;
+      timer = "00:00";
 
-    firstIndex = null;
-    secondIndex = null;
-    waiting = false;
+      firstIndex = null;
+      secondIndex = null;
+      waiting = false;
 
-    for (var card in cards) {
-      card.isflipped = false;
-      card.isMatched = false;
-    }
+      for (var card in cards) {
+        card.isflipped = false;
+        card.isMatched = false;
+      }
 
-    cards.shuffle();
-  });
+      cards.shuffle();
+    });
 
-  gameTimer?.cancel();
-  startTimer();
-}
+    gameTimer?.cancel();
+    startTimer();
+  }
 
   @override
   @override
@@ -414,23 +419,24 @@ class GridPageState extends State<GridPage> {
             ),
 
             const SizedBox(height: 20),
-              const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-    ElevatedButton(
-      onPressed: restartGame,
-      child: const Text("Restart"),
-    ),
+            ElevatedButton(
+              onPressed: restartGame,
+              child: const Text("Restart"),
+            ),
 
-    const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             Expanded(
               child: Container(
                 margin: const EdgeInsets.all(50),
                 child: GridView.builder(
                   itemCount: cards.length,
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                   crossAxisCount:
-                                   MediaQuery.of(context).size.width > 700 ? 5 : 4,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: MediaQuery.of(context).size.width > 700
+                        ? 5
+                        : 4,
                   ),
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -438,53 +444,50 @@ class GridPageState extends State<GridPage> {
                         flipCard(index);
                       },
                       child: ClipRRect(
-  borderRadius: BorderRadius.circular(20),
-  child: BackdropFilter(
-    filter: ImageFilter.blur(
-      sigmaX: 10,
-      sigmaY: 10,
-    ),
-    child: Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white.withOpacity(0.25),
-            Colors.white.withOpacity(0.08),
-          ],
-        ),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 10,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-    child: cards[index].isflipped
-    ? ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.asset(
-          cards[index].image,
-          fit: BoxFit.cover,
-        ),
-      )
-    : const Center(
-        child: Icon(
-          Icons.question_mark,
-          color: Colors.white,
-          size: 40,
-        ),
-      ),
-    ),
-  ),
-),
+                        borderRadius: BorderRadius.circular(20),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.white.withOpacity(0.25),
+                                  Colors.white.withOpacity(0.08),
+                                ],
+                              ),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.3),
+                                width: 1.5,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 6),
+                                ),
+                              ],
+                            ),
+                            child: cards[index].isflipped
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(
+                                      cards[index].image,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : const Center(
+                                    child: Icon(
+                                      Icons.question_mark,
+                                      color: Colors.white,
+                                      size: 40,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),
