@@ -284,6 +284,7 @@ class GridPageState extends State<GridPage> {
         score++;
       });
     } else {
+      await player.play(AssetSource('audios/wrong.mp3'));
       setState(() {
         cards[firstIndex!].isflipped = false;
         cards[secondIndex!].isflipped = false;
