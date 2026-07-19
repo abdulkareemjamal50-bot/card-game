@@ -436,13 +436,11 @@ class GridPageState extends State<GridPage> {
 
             Expanded(
               child: Container(
-                margin: const EdgeInsets.all(50),
+                margin: const EdgeInsets.all(10),
                 child: GridView.builder(
                   itemCount: cards.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).size.width > 700
-                        ? 5
-                        : 4,
+                    crossAxisCount: 5,
                   ),
                   itemBuilder: (context, index) {
                     return GestureDetector(
