@@ -217,14 +217,19 @@ class GridPageState extends State<GridPage> {
   int? secondIndex;
   int score = 0;
   int moves = 0;
-  String timer = "00:00";
+  String timer = "05:00";
   Timer? gameTimer;
-  int seconds = 0;
+  int seconds = 5 * 60;
 
   void startTimer() {
     gameTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (seconds <= 0) {
+        timer.cancel();
+        return;
+      }
+
       setState(() {
-        seconds++;
+        seconds--;
 
         int minutes = seconds ~/ 60;
         int remainingSeconds = seconds % 60;
