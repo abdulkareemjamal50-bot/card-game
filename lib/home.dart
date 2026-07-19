@@ -272,6 +272,9 @@ class GridPageState extends State<GridPage> {
     await Future.delayed(const Duration(seconds: 1));
 
     if (cards[firstIndex!].image == cards[secondIndex!].image) {
+      //  await player.play(AssetSource('audios/wrong.mp3'));
+      //  print('audio-player');
+      await player.play(AssetSource('audios/correct.mp3'));
       setState(() {
         cards[firstIndex!].isMatched = true;
         cards[secondIndex!].isMatched = true;
